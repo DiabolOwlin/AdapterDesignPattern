@@ -140,7 +140,6 @@ def main():
 
     print("\nDot product of 'vector2d_1' and 'vector2d_2' vectors:", vector2d_1.cdot(vector2d_2))
 
-
     print("\n==================================================================================================================")
     print("three dimensional vectors\n")
 
