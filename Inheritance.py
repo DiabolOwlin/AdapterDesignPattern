@@ -124,6 +124,7 @@ class Adapter3D(VectorAdapter3D):
 
 
 def main():
+    print("Inheritance\n\n")
     print("==================================================================================================================")
     print("two dimensional vectors\n")
 

@@ -128,6 +128,7 @@ class Adapter3D(VectorAdapter3D):
 
 
 def main():
+    print("Aggregation\n\n")
     print("==================================================================================================================")
     print("two dimensional vectors\n")
 
@@ -145,7 +146,7 @@ def main():
 
     vector3d_1 = Vector3D(1, 1, 2)
     vector3d_2 = Vector3D(1, 4, 5)
-    decorator = Decorator(1, 6, 1)
+    decorator = Decorator(1, 1, 2)
 
     print("Components vector3d_1:  ", vector3d_1.getComponents(), "     |   Components vector3d_2:  ", vector3d_2.getComponents())
     print("Abs vector3d_1:         ", vector3d_1.abs(), "          |   Abs vector3d_2:         ", vector3d_2.abs())
