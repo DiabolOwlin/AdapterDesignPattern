@@ -4,19 +4,19 @@ import math
 
 class IVector:
     @abstractmethod
-    def abs(self):
+    def abs(self):       # oblicza modul wektora
         pass
 
     @abstractmethod
-    def cdot(self, vector):
+    def cdot(self, vector):     # oblicza iloczyn skalarnz miedzy dwoma wektorami
         pass
 
     @abstractmethod
-    def getComponents(self):
+    def getComponents(self):      # zwraca skladowe wektora
         pass
 
     @abstractmethod
-    def getAngle(self):
+    def getAngle(self):         # zwraca kąt pomiędzy wektorem, a osią OX
         pass
 
 

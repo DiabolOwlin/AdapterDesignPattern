@@ -12,11 +12,11 @@ class IVector:
         pass
 
     @abstractmethod
-    def getComponents(self):
+    def getComponents(self):      # zwraca skladowe wektora
         pass
 
     @abstractmethod
-    def getAngle(self):
+    def getAngle(self):         # zwraca kąt pomiędzy wektorem, a osią OX
         pass
 
 
