@@ -41,50 +41,47 @@ class Vector2D(IVector):
 
     def cdot(self, vector):
         dot_product = self.x * vector.x + self.y * vector.y
-        return dot_product
-
-    def from_polar_to_cartesian(self):
-        x = self.abs() * math.cos(self.getAngle())
-        y = self.abs() * math.sin(self.getAngle())
-        return [x, y]
+        return round(dot_product, 2)
 
 
-class Vector3D(IVector):
+class Vector3D(Vector2D):
     def __init__(self, x, y, z):
-        self.vector = Vector2D(x, y)
+        Vector2D.__init__(self, x, y)
         self.z = z
 
     def abs(self):
-        x, y = self.vector.getComponents()
+        x, y = super().getComponents()
         return round(math.sqrt(pow(x, 2) + pow(y, 2) + pow(self.z, 2)), 2)
 
     def getComponents(self):
-        x, y = self.vector.getComponents()
+        x, y = super().getComponents()
         return [x, y, self.z]
 
     def getAngle(self):
-        x, y = self.vector.getComponents()
+        x, y = super().getComponents()
+
         fi = math.atan(y / x)
         psi = math.atan(math.sqrt(pow(x, 2) + pow(y, 2)) / self.z)
 
-        angle = [round(fi, 2), round(psi, 2)]
-        return angle
+        angles = [round(fi, 2), round(psi, 2)]
+        return angles
 
     def cdot(self, vector):
-        x, y = self.vector.getComponents()
-        x_v, y_v, z_v = vector.getComponents()
-        dot_multiplication = x * x_v + y * y_v + self.z * z_v
-        return round(dot_multiplication, 2)
+        x, y = super().getComponents()
+        x_vector, y_vector, z_vector = vector.getComponents()
+        dot_product = x * x_vector + y * y_vector + self.z * z_vector
+        return round(dot_product, 2)
 
-
-class Decorator(Vector3D):
     def cross_multiplication(self, vector):
-        x, y, z = self.getComponents()
-        x_2, y_2, z_2 = vector.getComponents()
-        x_v = y * z_2 - (z * y_2)
-        y_v = z * x_2 - (x * z_2)
-        z_v = x * y_2 - (y * x_2)
-        new_vector = Vector3D(x_v, y_v, z_v)
+        x_vector, y_vector, z_vector = vector.getComponents()
+        x, y = super().getComponents()
+
+        x_product = y * z_vector - (self.z * y_vector)
+        y_product = self.z * x_vector - (x * z_vector)
+        z_product = x * y_vector - (y * x_vector)
+
+        new_vector = Vector3D(round(x_product, 2), round(y_product, 2), round(z_product, 2))
+
         return new_vector
 
 
@@ -122,7 +119,6 @@ class Adapter3D(VectorAdapter3D):
         x = self.r * math.sin(math.radians(self.psi)) * math.cos(math.radians(self.fi))
         y = self.r * math.sin(math.radians(self.psi)) * math.sin(math.radians(self.fi))
         z = self.r * math.cos(math.radians(self.psi))
-
         vector = Vector3D(round(x, 2), round(y, 2), round(z, 2))
         return vector
 
@@ -134,7 +130,8 @@ def main():
     vector2d_1 = Vector2D(1, 2)
     vector2d_2 = Vector2D(1, 5)
 
-    print("Components vector2d_1:   ", vector2d_1.getComponents(), " |   Components vector2d_2:   ",vector2d_2.getComponents())
+    print("Components vector2d_1:   ", vector2d_1.getComponents(), " |   Components vector2d_2:   ",
+          vector2d_2.getComponents())
     print("Abs vector2d_1:          ", vector2d_1.abs(), "   |   Abs vector2d_2:          ", vector2d_2.abs())
     print("Angle vector2d_1:        ", vector2d_1.getAngle(), "  |   Angle vector2d_2:        ", vector2d_2.getAngle())
 
@@ -145,7 +142,6 @@ def main():
 
     vector3d_1 = Vector3D(1, 1, 2)
     vector3d_2 = Vector3D(1, 4, 5)
-    decorator = Decorator(1, 6, 1)
 
     print("Components vector3d_1:  ", vector3d_1.getComponents(), "     |   Components vector3d_2:  ", vector3d_2.getComponents())
     print("Abs vector3d_1:         ", vector3d_1.abs(), "          |   Abs vector3d_2:         ", vector3d_2.abs())
@@ -153,7 +149,7 @@ def main():
 
     print("\nDot product of vector3d_1, vector3d_2:", vector3d_1.cdot(vector3d_2))
 
-    print("\nCross multiplication:", decorator.cross_multiplication(vector3d_2).getComponents())
+    print("\nCross multiplication:", vector3d_1.cross_multiplication(vector3d_2).getComponents())
 
     print("\n===================================================================================================================")
     print("Convert coordinates\n")
