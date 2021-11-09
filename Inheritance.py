@@ -4,11 +4,11 @@ import math
 
 class IVector:
     @abstractmethod
-    def abs(self):
+    def abs(self):       # oblicza modul wektora
         pass
 
     @abstractmethod
-    def cdot(self, vector):
+    def cdot(self, vector):     # oblicza iloczyn skalarnz miedzy dwoma wektorami
         pass
 
     @abstractmethod
@@ -63,8 +63,8 @@ class Vector3D(Vector2D):
         fi = math.atan(y / x)
         psi = math.atan(math.sqrt(pow(x, 2) + pow(y, 2)) / self.z)
 
-        angles = [round(fi, 2), round(psi, 2)]
-        return angles
+        angle = [round(fi, 2), round(psi, 2)]
+        return angle
 
     def cdot(self, vector):
         x, y = super().getComponents()

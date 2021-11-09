@@ -72,19 +72,19 @@ class Vector3D(IVector):
 
     def cdot(self, vector):
         x, y = self.vector.getComponents()
-        x_v, y_v, z_v = vector.getComponents()
-        dot_multiplication = x * x_v + y * y_v + self.z * z_v
+        x_vector, y_vector, z_vector = vector.getComponents()
+        dot_multiplication = x * x_vector + y * y_vector + self.z * z_vector
         return round(dot_multiplication, 2)
 
 
 class Decorator(Vector3D):
     def cross_multiplication(self, vector):
-        x, y, z = self.getComponents()
-        x_2, y_2, z_2 = vector.getComponents()
-        x_v = y * z_2 - (z * y_2)
-        y_v = z * x_2 - (x * z_2)
-        z_v = x * y_2 - (y * x_2)
-        new_vector = Vector3D(x_v, y_v, z_v)
+        x1, y1, z1 = self.getComponents()
+        x2, y2, z2 = vector.getComponents()
+        x_vector = y1 * z2 - (z1 * y2)
+        y_vector = z1 * x2 - (x1 * z2)
+        z_vector = x1 * y2 - (y1 * x2)
+        new_vector = Vector3D(x_vector, y_vector, z_vector)
         return new_vector
 
 
